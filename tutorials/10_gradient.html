@@ -25,14 +25,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------>
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script> 
-    <script src="http://codef.santo.fr/codef/codef_gradient.js"></script> 
-    <script> 
-      
-      var myimage=new image('media/logo.png'); 
+<html>
+  <head>
+
+    <script src="../codef/codef_core.js"></script>
+    <script src="../codef/codef_gradient.js"></script> 
+    <script>
+
+      var myimage=new image('media/logo.png');
       var mycanvas;
       var mygrad;
       var mygradcolor=
@@ -42,28 +42,28 @@ THE SOFTWARE.
             {color: 'rgb(0,0,0)' ,  offset:0.5},
             {color: 'rgb(0,0,255)', offset:0.75},
             {color: 'rgb(0,0,0)' ,  offset:1}
-            
+
           ];
-      
-      
+
+
       function init(){
         mycanvas=new canvas(640,480,"main");
         mygrad=new grad(mycanvas,mygradcolor);
         go();
       }
-      
+
       function go(){
         mygrad.drawV();
         myimage.draw(mycanvas,180,180);
-        
+
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-  </body> 
+  </body>
 </html>
