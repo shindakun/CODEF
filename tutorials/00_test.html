@@ -29,34 +29,30 @@ THE SOFTWARE.
   <head>
 
     <script src="../codef/codef_core.js"></script>
-    <script src="../codef/codef_fx.js"></script>
+    <script src="../codef/codef_scrolltext.js"></script>
     <script>
 
-      var myimage = new image('media/logo.png');
+      var myfont = new image('media/font1.png');
       var mycanvas;
-      var myoffscreencanvas;
-      var myfx;
-      var myfxparam=[
-        {value: 0, amp: 30, inc:0.03, offset: -0.05},
-        {value: 0, amp: 30, inc:0.01, offset:  0.08}
-      ];
+      var myscrolltext;
 
-
-
+      var myscrollparam=[
+             {myvalue: 0, amp: 125, inc:0.2, offset: -0.04},
+           ];
       function init(){
-        myoffscreencanvas=new canvas(287,106); // i dont specify a div to make it hidden ;)
-        myimage.draw(myoffscreencanvas,0,0); // I draw my logo to my offscreen canvas.
-
         mycanvas=new canvas(640,480,"main");
-        myfx=new FX(myoffscreencanvas,mycanvas,myfxparam);
+        myfont.initTile(32,32,32);
+        myscrolltext = new scrollTextVertical();
+        //myscrolltext = new scrollTextHorizontal();
+        myscrolltext.scrtxt="HELLO AND WELCOME TO        NONAMENO       ^P9THIS LITTLE FUCKIN SCROLLTEXT";
+        myscrolltext.init(mycanvas,myfont,1, myscrollparam);
 
         go();
       }
 
       function go(){
         mycanvas.fill('#000000');
-        myfx.siny(180,180);
-
+        myscrolltext.draw(240-16);
         requestAnimFrame( go );
       }
 

@@ -1,3 +1,5 @@
+'use strict';
+/*exported FX */
 /*------------------------------------------------------------------------------
 Copyright (c) 2011 Antoine Santo Aka NoNameNo
 
@@ -25,110 +27,109 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------*/
 
-function FX(src, dst, params){
-	this.src=src;
-	this.dst=dst;
-	this.params=params;
+function FX (src, dst, params) {
+	this.src = src;
+	this.dst = dst;
+	this.params = params;
 
-	this.siny = function(posx,posy){
-		var oldvalue=new Array();
-		var tmp=this.dst.contex.globalAlpha;
-		this.dst.contex.globalAlpha=1;
-		for(var j=0;j<this.params.length;j++){
-			oldvalue[j]=this.params[j].value;
+	this.siny = function(posx,posy) {
+		var oldvalue = [];
+		var tmp = this.dst.contex.globalAlpha;
+		this.dst.contex.globalAlpha = 1;
+		for (let j = 0;  j <this.params.length; j += 1) {
+			oldvalue[j] = this.params[j].value;
 		}
-		for(var i=0;i<this.src.canvas.width;i++){
+		for (let i = 0; i < this.src.canvas.width; i += 1) {
 			var prov = 0;
-			for(var j=0;j<this.params.length;j++){
-				prov += Math.sin(this.params[j].value)*this.params[j].amp;
+			for (let j = 0; j < this.params.length; j += 1) {
+				prov += Math.sin(this.params[j].value) * this.params[j].amp;
 			}
-			
-			this.src.drawPart(this.dst,i+posx,prov+posy,i,0,1,this.src.canvas.height);
 
-			for(var j=0;j<this.params.length;j++){
-				this.params[j].value+=this.params[j].inc;
+			this.src.drawPart(this.dst, i + posx, prov + posy, i, 0, 1, this.src.canvas.height);
+
+			for (let j = 0; j < this.params.length; j += 1) {
+				this.params[j].value += this.params[j].inc;
 			}
 		}
-		for(var j=0;j<this.params.length;j++){
-			this.params[j].value=oldvalue[j]+this.params[j].offset;
+		for (let j = 0; j < this.params.length; j += 1) {
+			this.params[j].value = oldvalue[j] + this.params[j].offset;
 		}
-		this.dst.contex.globalAlpha=tmp;
+		this.dst.contex.globalAlpha = tmp;
 	}
-	
-	this.zoomy = function(posx,posy,max){
-		var oldvalue=new Array();
-		var tmp=this.dst.contex.globalAlpha;
-		this.dst.contex.globalAlpha=1;
-		for(var j=0;j<this.params.length;j++){
-			oldvalue[j]=this.params[j].value;
+
+	this.zoomy = function (posx, posy, max) {
+		var oldvalue = [];
+		var tmp = this.dst.contex.globalAlpha;
+		this.dst.contex.globalAlpha = 1;
+		for (let j = 0; j < this.params.length; j += 1) {
+			oldvalue[j] = this.params[j].value;
 		}
-		for(var i=0;i<this.src.canvas.width;i++){
+		for (let i = 0; i < this.src.canvas.width; i += 1) {
 			var prov = 0;
-			for(var j=0;j<this.params.length;j++){
-				prov += Math.sin(this.params[j].value)*this.params[j].amp;
+			for (let j = 0; j < this.params.length; j += 1) {
+        // prov += max + this.params[j].amp + Math.sin(this.params[j].value) * this.params[j].amp;
+				prov += Math.sin(this.params[j].value) * this.params[j].amp;
 			}
-			
+
 			this.src.drawPart(this.dst,i+posx,posy,i,0,1,this.src.canvas.height,1,0,1,prov);
 
-			for(var j=0;j<this.params.length;j++){
-				this.params[j].value+=this.params[j].inc;
+			for (let j = 0; j < this.params.length; j += 1) {
+				this.params[j].value += this.params[j].inc;
 			}
 		}
-		for(var j=0;j<this.params.length;j++){
-			this.params[j].value=oldvalue[j]+this.params[j].offset;
+		for (let j = 0; j < this.params.length; j += 1) {
+			this.params[j].value = oldvalue[j] + this.params[j].offset;
 		}
-		this.dst.contex.globalAlpha=tmp;
-	}
-	
-	this.sinx = function(posx,posy){
-		var tmp=this.dst.contex.globalAlpha;
-		this.dst.contex.globalAlpha=1;
-		var oldvalue=new Array();
-		for(var j=0;j<this.params.length;j++){
-			oldvalue[j]=this.params[j].value;
-		}
-		for(var i=0;i<this.src.canvas.height;i++){
-			var prov = 0;
-			for(var j=0;j<this.params.length;j++){
-				prov += Math.sin(this.params[j].value)*this.params[j].amp;
-			}
-			
-			this.src.drawPart(this.dst,prov+posx,i+posy,0,i,this.src.canvas.width,1);
-			
-			for(var j=0;j<this.params.length;j++){
-				this.params[j].value+=this.params[j].inc;
-			}
-		}
-		for(var j=0;j<this.params.length;j++){
-			this.params[j].value=oldvalue[j]+this.params[j].offset;
-		}
-		this.dst.contex.globalAlpha=tmp;
-	}
-	
-	this.zoomx = function(posx,posy,max){
-		var tmp=this.dst.contex.globalAlpha;
-		this.dst.contex.globalAlpha=1;
-		var oldvalue=new Array();
-		for(var j=0;j<this.params.length;j++){
-			oldvalue[j]=this.params[j].value;
-		}
-		for(var i=0;i<this.src.canvas.height;i++){
-			var prov = 0;
-			for(var j=0;j<this.params.length;j++){
-				prov += max+this.params[j].amp+Math.sin(this.params[j].value)*this.params[j].amp;
-			}
-			
-			this.src.drawPart(this.dst,posx,i+posy,0,i,this.src.canvas.width,1,1,0,prov,1);
-			
-			for(var j=0;j<this.params.length;j++){
-				this.params[j].value+=this.params[j].inc;
-			}
-		}
-		for(var j=0;j<this.params.length;j++){
-			this.params[j].value=oldvalue[j]+this.params[j].offset;
-		}
-		this.dst.contex.globalAlpha=tmp;
+		this.dst.contex.globalAlpha = tmp;
 	}
 
-	
+	this.sinx = function (posx, posy) {
+		var tmp = this.dst.contex.globalAlpha;
+		this.dst.contex.globalAlpha = 1;
+		var oldvalue = [];
+		for (let j = 0; j < this.params.length; j += 1) {
+			oldvalue[j] = this.params[j].value;
+		}
+		for (let i = 0; i < this.src.canvas.height; i += 1) {
+			var prov = 0;
+			for (let j = 0; j < this.params.length; j += 1) {
+				prov += Math.sin(this.params[j].value) * this.params[j].amp;
+			}
+
+			this.src.drawPart(this.dst, prov + posx, i + posy, 0, i, this.src.canvas.width, 1);
+
+			for (let j = 0; j < this.params.length; j += 1) {
+				this.params[j].value += this.params[j].inc;
+			}
+		}
+		for (let j = 0; j < this.params.length; j += 1) {
+			this.params[j].value = oldvalue[j] + this.params[j].offset;
+		}
+		this.dst.contex.globalAlpha = tmp;
+	}
+
+	this.zoomx = function (posx, posy, max) {
+		var tmp = this.dst.contex.globalAlpha;
+		this.dst.contex.globalAlpha = 1;
+		var oldvalue= [];
+		for (let j = 0; j < this.params.length; j += 1) {
+			oldvalue[j] = this.params[j].value;
+		}
+		for (let i = 0; i < this.src.canvas.height; i += 1) {
+			var prov = 0;
+			for (let j = 0; j < this.params.length; j += 1) {
+				// prov += max + this.params[j].amp + Math.sin(this.params[j].value) * this.params[j].amp;
+        prov += Math.sin(this.params[j].value) * this.params[j].amp;
+			}
+			this.src.drawPart(this.dst, posx, i + posy, 0, i, this.src.canvas.width, 1, 1, 0, prov, 1);
+
+			for (let j = 0; j < this.params.length; j += 1) {
+				this.params[j].value += this.params[j].inc;
+			}
+		}
+		for (let j = 0; j < this.params.length; j += 1) {
+			this.params[j].value = oldvalue[j] + this.params[j].offset;
+		}
+		this.dst.contex.globalAlpha = tmp;
+	}
 }
