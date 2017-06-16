@@ -53,7 +53,7 @@ function scrolltext_horizontal(){
 	this.scrtxt=" ";
 	this.pausetimer=0;
 	this.pausedelay=0;
- 
+
 	this.init = function(dst, font,speed,sinparam,type){
 		this.speed=speed;
 		this.dst=dst;
@@ -73,7 +73,7 @@ function scrolltext_horizontal(){
 		else
 			this.type=type;
 	}
- 
+
 	this.draw = function(posy){
 		var prov = 0;
 		var temp = new Array();
@@ -113,7 +113,7 @@ function scrolltext_horizontal(){
 					//
 					else if(this.scrtxt.charAt(this.scroffset+1) =="C"){
 						var end = this.scrtxt.indexOf(';', this.scroffset+2);
-						var functionName = this.scrtxt.substring(this.scroffset+2, end);			
+						var functionName = this.scrtxt.substring(this.scroffset+2, end);
 						window[functionName]();
 						this.scroffset+=(end-this.scroffset)+1;
 					}
@@ -126,8 +126,15 @@ function scrolltext_horizontal(){
 					}
 					this.letters[i].ltr=this.scrtxt.charCodeAt(this.scroffset);
 					this.scroffset++;
-					if(this.scroffset> this.scrtxt.length-1)
-						this.scroffset=0;
+          if (this.scrtxt.length-1 <= this.wide) {
+					  if(this.scroffset > this.wide) {
+						  this.scroffset=0;
+            }
+          } else {
+            if (this.scroffset > this.scrtxt.length-1) {
+						  this.scroffset=0;
+            }
+          }
 				}
 			}
 		}
@@ -136,7 +143,7 @@ function scrolltext_horizontal(){
 					this.sinparam[j].myvalue=oldvalue[j];
 			}
 		}
-		
+
 		for(j=0;j<=this.wide;j++){
 			temp[j]={indice:j, posx:this.letters[j].posx};
 		}
@@ -155,7 +162,7 @@ function scrolltext_horizontal(){
 				}
 			}
 			this.font.drawTile(this.dst,this.letters[temp[i].indice].ltr-this.fontstart,this.letters[temp[i].indice].posx,prov+posy);
-			
+
 			if(typeof(this.sinparam)!='undefined'){
 				for(var j=0;j<this.sinparam.length;j++){
 					this.sinparam[j].myvalue+=this.sinparam[j].inc;
@@ -182,7 +189,7 @@ function scrolltext_vertical(){
 	this.scrtxt=" ";
 	this.pausetimer=0;
 	this.pausedelay=0;
- 
+
 	this.init = function(dst, font,speed,sinparam,type){
 		this.speed=speed;
 		this.dst=dst;
@@ -202,7 +209,7 @@ function scrolltext_vertical(){
 		else
 			this.type=type;
 	}
- 
+
 	this.draw = function(posx){
 		var prov = 0;
 		var temp = new Array();
@@ -242,7 +249,7 @@ function scrolltext_vertical(){
 					//
 					else if(this.scrtxt.charAt(this.scroffset+1) =="C"){
 						var end = this.scrtxt.indexOf(';', this.scroffset+2);
-						var functionName = this.scrtxt.substring(this.scroffset+2, end);			
+						var functionName = this.scrtxt.substring(this.scroffset+2, end);
 						window[functionName]();
 						this.scroffset+=(end-this.scroffset)+1;
 					}
@@ -255,8 +262,15 @@ function scrolltext_vertical(){
 					}
 					this.letters[i].ltr=this.scrtxt.charCodeAt(this.scroffset);
 					this.scroffset++;
-					if(this.scroffset> this.scrtxt.length-1)
-						this.scroffset=0;
+          if (this.scrtxt.length-1 <= this.wide) {
+					  if(this.scroffset > this.wide) {
+						  this.scroffset=0;
+            }
+          } else {
+            if (this.scroffset > this.scrtxt.length-1) {
+						  this.scroffset=0;
+            }
+          }
 				}
 			}
 		}
@@ -265,7 +279,7 @@ function scrolltext_vertical(){
 					this.sinparam[j].myvalue=oldvalue[j];
 			}
 		}
-		
+
 		for(j=0;j<=this.wide;j++){
 			temp[j]={indice:j, posy:this.letters[j].posy};
 		}
@@ -283,7 +297,7 @@ function scrolltext_vertical(){
 				}
 			}
 			this.font.drawTile(this.dst,this.letters[temp[i].indice].ltr-this.fontstart,prov+posx,this.letters[temp[i].indice].posy);
-			
+
 			if(typeof(this.sinparam)!='undefined'){
 				for(var j=0;j<this.sinparam.length;j++){
 					this.sinparam[j].myvalue+=this.sinparam[j].inc;
@@ -299,4 +313,3 @@ function scrolltext_vertical(){
 	}
 	return this;
 }
-
