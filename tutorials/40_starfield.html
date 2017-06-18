@@ -25,35 +25,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------>
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script> 
-    <script src="http://codef.santo.fr/codef/codef_starfield.js"></script> 
-    <script> 
-      
+<html>
+  <head>
+
+    <script src="../codef/codef_core.js"></script>
+    <script src="../codef/codef_starfield.js"></script> 
+    <script>
+
       var mycanvas;
       var mystarfield;
-      
-      
+
+
       function init(){
         mycanvas=new canvas(640,480,"main");
         mystarfield=new starfield3D(mycanvas, 500, 2, 640,480, 320, 240,'#FFFFFF', 100,0,0);
-        
+
         go();
       }
-      
+
       function go(){
         mycanvas.fill('#000000');
         mystarfield.draw();
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-  </body> 
+  </body>
 </html>

@@ -25,13 +25,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------>
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script> 
-    <script src="http://codef.santo.fr/codef/codef_starfield.js"></script> 
-    <script> 
-      
+<html>
+  <head>
+
+    <script src="../codef/codef_core.js"></script>
+    <script src="../codef/codef_starfield.js"></script> 
+    <script>
+
       var mycanvas;
       var my2dstarfield;
       var my2dstarsparams=[
@@ -39,31 +39,30 @@ THE SOFTWARE.
         {nb:30, speedy:0.8, speedx:0.8, params:1},
         {nb:30, speedy:0.6, speedx:0.6, params:2},
       ];
-        
+
         var bubble = new Array();
         bubble[0]=new image('media/bubble0.png');
       bubble[1]=new image('media/bubble1.png');
       bubble[2]=new image('media/bubble2.png');
-      
+
       function init(){
         mycanvas=new canvas(640,480,"main");
         my2dstarfield=new starfield2D_img(mycanvas,bubble,my2dstarsparams);
-        
+
         go();
       }
-      
+
       function go(){
         mycanvas.fill('#000000');
         my2dstarfield.draw();
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-    </body> 
+    </body>
     </html>
-      

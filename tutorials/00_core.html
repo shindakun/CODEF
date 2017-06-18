@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<!------------------------------------------------------------------------------
+<!--
 Copyright (c) 2011 Antoine Santo Aka NoNameNo
 
 This File is part of the CODEF project.
@@ -24,30 +24,30 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
------------------------------------------------------------------------------->
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script> 
-    <script> 
-      
+-->
+<html>
+  <head>
+    <title>CODEF Core</title>
+    <script src="../codef/codef_core.js"></script>
+    <script>
+
       var mycanvas;
-      
+
       function init(){
         mycanvas=new canvas(640,480,"main");
         go();
       }
-      
+
       function go(){
         mycanvas.fill('#0000FF');
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-  </body> 
+  </body>
 </html>

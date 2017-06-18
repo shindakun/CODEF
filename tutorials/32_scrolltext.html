@@ -25,40 +25,40 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------>
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script> 
-    <script src="http://codef.santo.fr/codef/codef_fx.js"></script> 
-    <script src="http://codef.santo.fr/codef/codef_scrolltext.js"></script> 
-    <script> 
-      
+<html>
+  <head>
+
+    <script src="../codef/codef_core.js"></script>
+    <script src="../codef/codef_fx.js"></script>
+    <script src="../codef/codef_scrolltext.js"></script>
+    <script>
+
       var myfont = new image('media/font2.png');
       var mycanvas;
       var myoffscreencanvas;
       var myscrolltext;
-      
+
       var myfx;
       var myfxparam=[
         {value: 0, amp: 30, inc:0.03, offset: -0.05},
         {value: 0, amp: 130, inc:0.01, offset: -0.04}
       ];
-      
+
       function init(){
         mycanvas=new canvas(640,480,"main");
         myoffscreencanvas=new canvas(640,32);
-        
+
         myfont.initTile(32,32,32);
-        
-        myscrolltext = new scrolltext_horizontal();
+
+        myscrolltext = new scrollTextHorizontal();
         myscrolltext.scrtxt="---------    OOOOYOP YOP         NONAMENO      ^P5 ^S2IS BACK WITH THIS SCROLLY.. WHAT A SHITTY NICE SCROLL....     ^S1 "
           myscrolltext.init(myoffscreencanvas,myfont,1);
-        
+
         myfx=new FX(myoffscreencanvas,mycanvas,myfxparam);
-        
+
         go();
       }
-      
+
       function go(){
         mycanvas.fill('#000000');
         myoffscreencanvas.clear();
@@ -66,12 +66,12 @@ THE SOFTWARE.
         myfx.siny(0,200);
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-  </body> 
+  </body>
 </html>

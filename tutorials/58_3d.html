@@ -25,17 +25,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------>
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script> 
-    <script src="http://codef.santo.fr/codef/codef_3d.js"></script> 
-    
-    <script> 
-      
+<html>
+  <head>
+
+    <script src="../codef/codef_core.js"></script>
+    <script src="../codef/codef_3d.js"></script> 
+
+    <script>
+
       var mycanvas;
       var my3d;
-      
+
       var myobj = new Array();
       var myobjvert = new Array();
       myobjvert=[
@@ -46,8 +46,8 @@ THE SOFTWARE.
         {x:0, y: 200, z: 0},
         {x:0, y:-200, z: 0},
       ];
-        
-        myobj=[ 
+
+        myobj=[
         {p1:1, p2:4, p3:0, params:new MeshLambertMaterial({ color: 0xffffff, wireframe: true, wireframeLinewidth:5, shading: FlatShading})},
         {p1:2, p2:4, p3:1, params:new MeshLambertMaterial({ color: 0xffffff, wireframe: true, wireframeLinewidth:5, shading: FlatShading})},
         {p1:3, p2:4, p3:2, params:new MeshLambertMaterial({ color: 0xffffff, wireframe: true, wireframeLinewidth:5, shading: FlatShading})},
@@ -57,19 +57,19 @@ THE SOFTWARE.
         {p1:2, p2:5, p3:3, params:new MeshLambertMaterial({ color: 0xffffff, wireframe: true, wireframeLinewidth:5, shading: FlatShading})},
         {p1:3, p2:5, p3:0, params:new MeshLambertMaterial({ color: 0xffffff, wireframe: true, wireframeLinewidth:5, shading: FlatShading})},
       ];
-      
+
       function init(){
         mycanvas=new canvas(640,480,"main");
         my3d=new codef3D(mycanvas, 900, 40, 1, 1600 );
         my3d.faces(myobjvert,myobj, false, false );
-        
+
         my3d.addAmbiLight(0x330000);
         my3d.addDirLight(0.5,0.5,0.5,0xff0000);
-        
-        
+
+
         go();
       }
-      
+
       function go(){
         mycanvas.fill('#000000');
         my3d.group.rotation.x+=0.01;
@@ -78,12 +78,12 @@ THE SOFTWARE.
         my3d.draw();
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-  </body> 
+  </body>
 </html>

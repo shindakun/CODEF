@@ -42,10 +42,10 @@ THE SOFTWARE.
       function init(){
         mycanvas=new canvas(640,480,"main");
         myfont.initTile(32,32,32);
-        myscrolltext = new scrollTextVertical();
-        //myscrolltext = new scrollTextHorizontal();
+        //myscrolltext = new scrollTextVertical();
+         myscrolltext = new scrollTextHorizontal();
         myscrolltext.scrtxt="HELLO AND WELCOME TO        NONAMENO       ^P9THIS LITTLE FUCKIN SCROLLTEXT";
-        myscrolltext.init(mycanvas,myfont,1, myscrollparam);
+        myscrolltext.init(mycanvas,myfont,1);
 
         go();
       }

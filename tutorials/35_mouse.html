@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<!------------------------------------------------------------------------------
+<!--
 Copyright (c) 2011 Antoine Santo Aka NoNameNo
 
 This File is part of the CODEF project.
@@ -24,70 +24,67 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-------------------------------------------------------------------------------> 
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script>  
-    <script src="http://codef.santo.fr/codef/codef_mouse.js"></script>
-    
-    <script> 
-      
+-->
+<html>
+  <head>
+
+    <script src="../codef/codef_core.js"></script>
+    <script src="../codef/codef_mouse.js"></script>
+
+    <script>
       var mycanvas;
-      
-      var MyMouseTracker;              
+      var MyMouseTracker;
       var mouseX=0;
       var mouseY=0;
-      
-      function init(){ 
+
+      function init() {
         mycanvas=new canvas(640,480,"main");
-        
         MyMouseTracker = new MouseTracker();
         MyMouseTracker.addMouseTrack(mycanvas,false);
-        
+
         go();
       }
-      
-      function go(){
-        mycanvas.fill('#000000'); 
-        
+
+      function go() {
+        mycanvas.fill('#000000');
+
         mouseX = mycanvas.MousePosX ;
-        mouseY = mycanvas.MousePosY ;  
-        
+        mouseY = mycanvas.MousePosY ;
+
         MyMouseTracker.MouseUpdate();
-        
-        if (mycanvas.MouseButt==1) {      
+
+        if (mycanvas.MouseButt==1) {
           mycanvas.contex.font = '20pt Calibri';
           mycanvas.contex.fillStyle = 'green';
           mycanvas.contex.fillText("Button 1 is pressed down at  X:"+mouseX+"   Y:"+mouseY , 100, 130);
         }
-        
+
         if (mycanvas.MouseButt==2) {
           mycanvas.contex.font = '20pt Calibri';
           mycanvas.contex.fillStyle = 'orange';
           mycanvas.contex.fillText("Mid Button is pressed down at  X:"+mouseX+"   Y:"+mouseY , 100, 190);
-        }  
-        
+        }
+
         if (mycanvas.MouseButt==3) {
           mycanvas.contex.font = '20pt Calibri';
           mycanvas.contex.fillStyle = 'blue';
           mycanvas.contex.fillText("Button 2 is pressed down at  X:"+mouseX+"   Y:"+mouseY , 100, 160);
-        }  
-        
+        }
+
         if(mouseX>0 && mouseX<640){
           mycanvas.contex.font = '20pt Calibri';
           mycanvas.contex.fillStyle = 'red';
-          mycanvas.contex.fillText("Mouse pos is    X:"+mouseX+"    Y:"+mouseY , 100, 100);  
+          mycanvas.contex.fillText("Mouse pos is    X:"+mouseX+"    Y:"+mouseY , 100, 100);
         }
-        
+
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-  </body> 
+  </body>
 </html>

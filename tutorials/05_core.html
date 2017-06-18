@@ -25,43 +25,43 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------>
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script> 
-    <script> 
-      
+<html>
+  <head>
+
+    <script src="../codef/codef_core.js"></script>
+    <script>
+
       var myimage=new image('media/logo.png');
       var mycanvas;
-      
+
       var myimageX=0;
-      var myimageMove=1;
-      
+      var myimageMove=5;
+
       function init(){
         mycanvas=new canvas(640,480,"main");
         go();
       }
-      
+
       function go(){
         mycanvas.fill('#000000');
         myimage.draw(mycanvas,myimageX,180);
-        
+
         myimageX+=myimageMove;
-        
+
         if(myimageX>640-myimage.img.width)
-          myimageMove=-1;
+          myimageMove=-5;
         if(myimageX<0)
-          myimageMove=1;
-        
-        
+          myimageMove=5;
+
+
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-  </body> 
+  </body>
 </html>

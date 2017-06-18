@@ -1,3 +1,5 @@
+/* jshint strict: false */
+
 /*------------------------------------------------------------------------------
 Copyright (c) 2011 Antoine Santo Aka NoNameNo
 
@@ -25,57 +27,53 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------*/
 
-function MouseTracker(){
-        this.list=new Array();
+function MouseTracker() {
+  this.list = [];
+  this.addMouseTrack = function addMouseTrack(cvs, ctxmenu) {
+    this.list.push(cvs);
+    /* eslint-disable no-param-reassign */
+    cvs.canvas.MousePosXTmp = -1000000;
+    cvs.canvas.MousePosYTmp = -1000000;
+    cvs.canvas.MouseButtTmp = 0;
+    cvs.MousePosX = -1000000;
+    cvs.MousePosY = -1000000;
+    cvs.MouseButt = 0;
+    /* eslint-enable no-param-reassign */
+    cvs.canvas.addEventListener('mouseout', function mouseout() {
+      this.MousePosXTmp = -1000000;
+      this.MousePosYTmp = -1000000;
+      this.MouseButtTmp = 0;
+    }, false);
 
-        this.addMouseTrack = function(cvs,ctxmenu){
-                 this.list.push(cvs);
-                 cvs.canvas.MousePosXTmp = -1000000;
-                 cvs.canvas.MousePosYTmp = -1000000;
-                 cvs.canvas.MouseButtTmp =  0;
-                 cvs.MousePosX = -1000000;
-                 cvs.MousePosY = -1000000;
-                 cvs.MouseButt =  0;
-         
-                 cvs.canvas.addEventListener('mouseout', function(){
-                        this.MousePosXTmp = -1000000;
-                        this.MousePosYTmp = -1000000;
-                        this.MouseButtTmp =  0;
-                 }, false);
+    cvs.canvas.addEventListener('mousemove', function mousemove(ev) {
+      let rect = this.getBoundingClientRect();
+      this.MousePosXTmp = Math.round(ev.clientX - rect.left);
+      this.MousePosYTmp = Math.round(ev.clientY - rect.top);
+    }, false);
 
-                cvs.canvas.addEventListener('mousemove', function(ev){
-			rect = this.getBoundingClientRect();
-			this.MousePosXTmp = Math.round(ev.clientX - rect.left);
-			this.MousePosYTmp = Math.round(ev.clientY - rect.top);
-                }, false);
+    cvs.canvas.addEventListener('mousedown', function mousedown(ev) {
+      this.MouseButtTmp = ev.which;
+    }, false);
 
-                cvs.canvas.addEventListener('mousedown', function(ev){
-                        this.MouseButtTmp = ev.which;
-                }, false);
+    cvs.canvas.addEventListener('mouseup', function mouseup() {
+      this.MouseButtTmp = 0;
+    }, false);
 
-                cvs.canvas.addEventListener('mouseup', function(ev){
-                        this.MouseButtTmp = 0;
-                }, false);
-
-
-		if(ctxmenu==false){
-		  cvs.canvas.addEventListener('contextmenu', function(e) {
-			  if (e.button === 2) {
-				e.preventDefault();
-				return false;
-			  }
-		  }, false);
-		}
-
-
+    if (ctxmenu === false) {
+      cvs.canvas.addEventListener('contextmenu', function (e) {
+        if (e.button === 2) {
+          e.preventDefault();
+          return false;
         }
+      }, false);
+    }
+  };
 
-        this.MouseUpdate=function(){
-                for(var i=0; i<this.list.length; i++){
-                        this.list[i].MouseButt = this.list[i].canvas.MouseButtTmp;
-                        this.list[i].MousePosX = this.list[i].canvas.MousePosXTmp;
-                        this.list[i].MousePosY = this.list[i].canvas.MousePosYTmp;
-                }
-        }
-
+  this.MouseUpdate = function MouseUpdate() {
+    for (let i = 0; i < this.list.length; i += 1) {
+      this.list[i].MouseButt = this.list[i].canvas.MouseButtTmp;
+      this.list[i].MousePosX = this.list[i].canvas.MousePosXTmp;
+      this.list[i].MousePosY = this.list[i].canvas.MousePosYTmp;
+    }
+  };
 }

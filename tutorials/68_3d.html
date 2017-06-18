@@ -25,17 +25,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------>
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script> 
-    <script src="http://codef.santo.fr/codef/codef_3d.js"></script> 
-    
-    <script> 
-      
+<html>
+  <head>
+
+    <script src="../codef/codef_core.js"></script> 
+    <script src="../codef/codef_3d.js"></script> 
+
+    <script>
+
       var mycanvas;
       var my3d;
-      
+
       var myobj = new Array();
       var myobjvert = new Array();
       myobjvert=[
@@ -46,10 +46,10 @@ THE SOFTWARE.
         {x:0, y: 200, z: 0},
         {x:0, y:-200, z: 0},
       ];
-        
-        var myimage=new image('media/texture1.png'); 
-        
-        myobj=[ 
+
+        var myimage=new image('media/texture1.png');
+
+        myobj=[
         {p1:1, p2:4, p3:0, u1:1,v1:1, u2:0.5,v2:0, u3:0,v3:1 ,params:new MeshLambertMaterial({ map: new Texture( myimage.img ), shading: FlatShading, opacity:0.2 })},
         {p1:2, p2:4, p3:1, u1:1,v1:1, u2:0.5,v2:0, u3:0,v3:1 ,params:new MeshLambertMaterial({ map: new Texture( myimage.img ), shading: FlatShading, opacity:0.2 })},
         {p1:3, p2:4, p3:2, u1:1,v1:1, u2:0.5,v2:0, u3:0,v3:1 ,params:new MeshLambertMaterial({ map: new Texture( myimage.img ), shading: FlatShading, opacity:0.2 })},
@@ -59,7 +59,7 @@ THE SOFTWARE.
         {p1:2, p2:5, p3:3, u1:1,v1:1, u2:0.5,v2:0, u3:0,v3:1 ,params:new MeshLambertMaterial({ map: new Texture( myimage.img ), shading: FlatShading, opacity:0.2 })},
         {p1:3, p2:5, p3:0, u1:1,v1:1, u2:0.5,v2:0, u3:0,v3:1 ,params:new MeshLambertMaterial({ map: new Texture( myimage.img ), shading: FlatShading, opacity:0.2 })},
       ];
-      
+
       function init(){
         mycanvas=new canvas(640,480,"main");
         my3d=new codef3D(mycanvas, 900, 40, 1, 1600 );
@@ -68,7 +68,7 @@ THE SOFTWARE.
         my3d.addDirLight(0.5,0.5,0.5,0xffffff);
         go();
       }
-      
+
       function go(){
         mycanvas.fill('#000000');
         my3d.group.rotation.x+=0.01;
@@ -77,12 +77,12 @@ THE SOFTWARE.
         my3d.draw();
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-  </body> 
+  </body>
 </html>

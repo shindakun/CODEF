@@ -25,39 +25,39 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ------------------------------------------------------------------------------>
-<html> 
-  <head> 
-    
-    <script src="http://codef.santo.fr/codef/codef_core.js"></script> 
-    <script src="http://codef.santo.fr/codef/codef_scrolltext.js"></script> 
-    <script> 
-      
+<html>
+  <head>
+
+    <script src="../codef/codef_core.js"></script>
+    <script src="../codef/codef_scrolltext.js"></script>
+    <script>
+
       var myfont = new image('media/font1.png');
       var mycanvas;
       var myscrolltext;
-      
-      
+
+
       function init(){
         mycanvas=new canvas(640,480,"main");
         myfont.initTile(32,32,32);
-        myscrolltext = new scrolltext_horizontal();
+        myscrolltext = new scrollTextHorizontal();
         myscrolltext.scrtxt="HELLO AND WELCOME TO        NONAMENO       ^P9THIS LITTLE FUCKIN SCROLLTEXT";
         myscrolltext.init(mycanvas,myfont,1);
-        
+
         go();
       }
-      
+
       function go(){
         mycanvas.fill('#000000');
         myscrolltext.draw(240-16);
         requestAnimFrame( go );
       }
-      
-    </script> 
-  </head> 
+
+    </script>
+  </head>
   <body onLoad="init();">
     <br>
     <br>
     <center><div id="main"></div><br><br><a href="javascript:window.location='view-source:'+window.location">View Source</a></center>
-  </body> 
+  </body>
 </html>
