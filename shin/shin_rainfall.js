@@ -27,7 +27,7 @@ function rainfall(dst, params) {
   }
 
   this.draw = function draw() {
-    this.dst.contex.strokeStyle = 'rgba(174,194,224,0.5)';
+    this.dst.contex.strokeStyle = 'rgba(156,174,201,0.5)';
     this.dst.contex.lineWidth = 1;
     this.dst.contex.lineCap = 'round';
 
@@ -38,6 +38,9 @@ function rainfall(dst, params) {
       this.dst.contex.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
       this.dst.contex.stroke();
       this.dst.contex.closePath();
+      // ghetto splash effect.
+      this.dst.plot(p.x - 1, this.dst.canvas.height - 2, 1, 'rgba(174,194,224,0.5)');
+      this.dst.plot(p.x, this.dst.canvas.height - 1, 1, 'rgba(174,194,224,0.5)');
     }
     this.update();
   };
